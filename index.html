@@ -14,25 +14,25 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<td width="30"><input type="checkbox" name="selectall"></td>
+					<td width="30"><input type="checkbox" id="selectall" name="selectall"></td>
 					<td>Name</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td><input type="checkbox" name="item[]"></td>
+					<td><input type="checkbox" class="checkitem" name="item[]"></td>
 					<td>Item 1</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="item[]"></td>
+					<td><input type="checkbox" class="checkitem" name="item[]"></td>
 					<td>Item 2</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="item[]"></td>
+					<td><input type="checkbox" class="checkitem" name="item[]"></td>
 					<td>Item 3</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="item[]"></td>
+					<td><input type="checkbox" class="checkitem" name="item[]"></td>
 					<td>Item 4</td>
 				</tr>
 			</tbody>
@@ -47,7 +47,19 @@
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/Javascript">
 		$(document).ready(function() {
-			$('#selectall');
+			$('#selectall').change(function(){
+				$('input:checkbox').prop('checked', $(this).prop('checked'));
+			});
+
+			$('.checkitem').change(function(){
+				if ($(this).prop('checked')==false) {
+					$('#selectall').prop('checked', false);
+				} 
+
+				if ($('.checkitem:checked').length == $('.checkitem').length) {
+					$('#selectall').prop('checked', true);
+				}
+			});
 		});
 	</script>
 </body>
